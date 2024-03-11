@@ -23,20 +23,20 @@ const AuthLoader = ({
 
   // console.log(serviceToken, me);
 
-  // useEffect(() => {
-  //   if (serviceToken && me && me.nickname) {
-  //     setAuth({ isLogIn: true, serviceToken });
-  //     setMe({ ...me });
-  //     setToken(serviceToken);
-  //     setTimeout(() => {
-  //       route.push("/home");
-  //     }, 2000);
-  //   } else {
-  //     setAuth({ isLogIn: false, serviceToken: undefined });
-  //     initMe();
-  //     setToken(null);
-  //   }
-  // }, [serviceToken, me]);
+  useEffect(() => {
+    if (serviceToken && me && me.nickname) {
+      setAuth({ isLogIn: true, serviceToken });
+      setMe({ ...me });
+      setToken(serviceToken);
+      setTimeout(() => {
+        route.push("/home");
+      }, 2000);
+    } else {
+      setAuth({ isLogIn: false, serviceToken: undefined });
+      initMe();
+      setToken(null);
+    }
+  }, [serviceToken, me]);
 
   // console.log("LAYOUT", session);
 
