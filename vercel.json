@@ -1,7 +1,7 @@
 {
   "headers": [
     {
-      "source": "/api/(.*)",
+      "source": "/call/(.*)",
       "headers": [
         { "key": "Access-Control-Allow-Credentials", "value": "true" },
         { "key": "Access-Control-Allow-Origin", "value": "*" },
@@ -15,7 +15,7 @@
   ],
   "rewrites": [
     {
-      "source": "/api/:path*",
+      "source": "/call/:path*",
       "destination": "https://team-silver-town-masil-gasil-fe.vercel.app/:path*"
     }
   ]
