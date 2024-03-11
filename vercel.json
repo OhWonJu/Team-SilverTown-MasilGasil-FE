@@ -12,11 +12,5 @@
         }
       ]
     }
-  ],
-  "rewrites": [
-    {
-      "source": "/call/:path*",
-      "destination": "https://team-silver-town-masil-gasil-fe.vercel.app/:path*"
-    }
   ]
 }
