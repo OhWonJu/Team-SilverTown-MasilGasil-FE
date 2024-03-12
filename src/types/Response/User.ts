@@ -5,7 +5,7 @@ export interface AuthResponse {
 }
 
 export interface MeResponse {
-  userId: number;
+  userId: 1;
   nickname: string;
   profileImg?: string;
   sex?: "MALE" | "FEMALE";
