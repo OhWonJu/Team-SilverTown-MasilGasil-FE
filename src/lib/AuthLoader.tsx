@@ -27,7 +27,7 @@ const AuthLoader = ({
   const redirectInable = pathAbleCheck(REDIRECT_INABLE_PATHS, currentPathName);
 
   useEffect(() => {
-    console.log("autoLoader", serviceToken, me);
+    console.log("autoLoader", serviceToken, me, currentPathName);
 
     if (serviceToken && me && me.nickname) {
       // 인증된 유저인 경우
@@ -41,7 +41,7 @@ const AuthLoader = ({
             }, 2000)
           : route.replace("/home");
       }
-    } else if (currentPathName.includes("policy") || currentPathName.includes("signup")) {
+    } else if (currentPathName.includes("policy") || currentPathName.includes("auth")) {
       return;
     } else {
       console.log("뭐어쩔");
