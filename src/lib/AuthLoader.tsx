@@ -44,6 +44,7 @@ const AuthLoader = ({
     } else if (currentPathName.includes("policy")) {
       return;
     } else {
+      console.log("뭐어쩔")
       // 인증 실패, 가인증 유저인 경우
       setAuth({ isLogIn: false, serviceToken: undefined });
       initMe();
