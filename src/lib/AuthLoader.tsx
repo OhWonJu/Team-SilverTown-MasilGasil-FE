@@ -41,10 +41,10 @@ const AuthLoader = ({
             }, 2000)
           : route.replace("/home");
       }
-    } else if (currentPathName.includes("policy")) {
+    } else if (currentPathName.includes("policy") || currentPathName.includes("signup")) {
       return;
     } else {
-      console.log("뭐어쩔")
+      console.log("뭐어쩔");
       // 인증 실패, 가인증 유저인 경우
       setAuth({ isLogIn: false, serviceToken: undefined });
       initMe();
