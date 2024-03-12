@@ -59,7 +59,6 @@ export const CommonContainer = styled.div`
   box-sizing: border-box;
   width: 100%;
   min-height: 100vh;
-  min-height: -webkit-fill-available;
 `;
 
 export const CommonContainerTailwind = `
