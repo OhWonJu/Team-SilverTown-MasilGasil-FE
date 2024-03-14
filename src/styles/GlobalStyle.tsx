@@ -29,14 +29,6 @@ export const GlobalStyle = createGlobalStyle<any>`
       height: 100%;
     }
 
-    @media screen and (orientation: landscape) {
-      html {
-        transform: rotate(-90deg);
-      }
-    }
-
-
-
     body {
       width: 100vw;
       height: 100%;
