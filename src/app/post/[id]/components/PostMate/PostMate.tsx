@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import MateCard from "@/components/MateCard";
 import * as S from "./PostMate.styles";
@@ -8,6 +10,13 @@ interface PostMateProps {
 }
 
 const PostMate = ({ mateData }: PostMateProps) => {
+  const { openModal, setModalView } = useUI();
+
+  const handleClick = () => {
+    setModalView("DEPLOY_ALERT_VIEW");
+    openModal();
+  };
+
   return (
     <>
       {mateData.length > 0 && (
