@@ -28,7 +28,7 @@ const sessionCookie = process.env.NEXTAUTH_URL?.startsWith("https://")
   : "next-auth.session-token";
 
 // function signOut(request: NextRequest) {
-//   const response = NextResponse.redirect(new URL("/"));
+//   const response = NextResponse.redirect("/");
 
 //   request.cookies.getAll().forEach((cookie) => {
 //     if (cookie.name.includes("next-auth")) response.cookies.delete(cookie.name);
