@@ -37,8 +37,8 @@ export const POST = async <T>({
 
   return await API.post<T>(`/call${endPoint}`, data, config)
     .then((response) => response)
-    .catch((e) => {
-      throw Error(e.response.data.message);
+    .catch((error) => {
+      throw Error(error);
     });
 };
 
@@ -58,6 +58,7 @@ export const PUT = async <T>({
   return await API.put<T>(`/call${endPoint}`, data, config)
     .then((response) => response)
     .catch((error) => {
+      console.log("error", error.response);
       throw Error(error);
     });
 };

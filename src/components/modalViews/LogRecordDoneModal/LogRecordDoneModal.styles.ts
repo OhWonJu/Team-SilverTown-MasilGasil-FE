@@ -68,6 +68,8 @@ export const RecordSummaryUnit = styled.div`
 
   font-size: ${FONT_SIZE.H5};
   font-weight: ${FONT_WEIGHT.BOLD};
+
+  /* color: ${(props) => props.theme.gray_300}; */
 `;
 
 export const ButtonContainer = styled.div`

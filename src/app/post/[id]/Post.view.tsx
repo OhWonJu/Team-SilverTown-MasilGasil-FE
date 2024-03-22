@@ -18,7 +18,7 @@ import { PostDetailResponse } from "@/types/Response/Post";
 interface PostViewProps {
   postId: string;
   postData: PostDetailResponse;
-  userInfo: UserDummyType;
+  userInfo: UserInfoType;
   userId: number | undefined;
   tabIndex: PostTabType;
   currentPinIndex: number;
@@ -69,7 +69,9 @@ const PostView = ({
 
           <S.PostContentSection
             className="scrollbar-hide"
-            style={{ overflowY: tabIndex === PostTabType.Memo ? "auto" : "hidden" }}
+            style={{
+              overflowY: tabIndex === PostTabType.Pin ? "visible" : "auto",
+            }}
           >
             {tabIndex === PostTabType.Memo && (
               <PostMemo
@@ -110,26 +112,6 @@ const PostView = ({
               </Button>
             </Link>
           </S.PostContentSection>
-
-          {tabIndex !== PostTabType.Mate && (
-            <Link href={`/log/record?postId=${postId}`}>
-              <Button
-                width="calc(100% - 4rem)"
-                textColor={Theme.lightTheme.white}
-                buttonColor={Theme.lightTheme.green_500}
-                style={{
-                  position: "absolute",
-                  left: "50%",
-                  bottom: "10rem",
-                  transform: "translateX(-50%)",
-                  fontSize: `${FONT_SIZE.LARGE}`,
-                  fontWeight: `${FONT_WEIGHT.BOLD}`,
-                }}
-              >
-                {"산책하기"}
-              </Button>
-            </Link>
-          )}
         </S.PostContentLayout>
       </S.PostContainer>
     </>

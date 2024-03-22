@@ -17,6 +17,11 @@ const WalkList = ({ MyLikeWalkingTrailsList, PopularWalkingTrailsList }: WalkLis
         PopularWalkingTrailsList={PopularWalkingTrailsList.contents}
         isEmpty={PopularWalkingTrailsList.isEmpty}
       />
+
+      {/* <MyLikeWalkingTrails
+        MyLikeWalkingTrailsList={MyLikeWalkingTrailsList.contents}
+        isEmpty={MyLikeWalkingTrailsList.isEmpty}
+      /> */}
     </>
   );
 };

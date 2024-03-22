@@ -3,23 +3,26 @@
 import { useState } from "react";
 
 const useMateCreateModel = () => {
+  const [thumbnail, setThumbnail] = useState<File | null>(null);
   const [isFormFilled, setIsFormFilled] = useState<boolean>(false);
-  const [capacity, setCapacity] = useState<string>("");
+  const [selectedPersonnel, setSelectedPersonnel] = useState<string>("");
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [startTime, setStartTime] = useState<Date | null>(null);
-  const [gatheringPlaceDetail, setGatheringPlaceDetail] = useState("");
+  const [locationDetail, setLocationDetail] = useState("");
 
   return {
+    thumbnail,
+    setThumbnail,
     isFormFilled,
     setIsFormFilled,
-    capacity,
-    setCapacity,
+    selectedPersonnel,
+    setSelectedPersonnel,
     startDate,
     setStartDate,
     startTime,
     setStartTime,
-    gatheringPlaceDetail,
-    setGatheringPlaceDetail,
+    locationDetail,
+    setLocationDetail,
   };
 };
 

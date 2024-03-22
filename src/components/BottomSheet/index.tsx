@@ -15,6 +15,7 @@ export type SheetRef = {
   snapTo: (index: number) => void;
 };
 
+// HACK: this is needed to get the typing to work properly...
 const _SheetCompound: any = Sheet;
 _SheetCompound.Container = SheetContainer;
 _SheetCompound.Header = SheetHeader;

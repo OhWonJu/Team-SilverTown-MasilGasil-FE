@@ -23,6 +23,12 @@ const Notification = ({ isNotification }: NotificationProps) => {
     >
       <NotificationOff />
     </a>
+    // <Link
+    //   href="/notification"
+    //   style={{ marginRight: "1.5rem" }}
+    // >
+    //   {isNotification ? <NotificationActive /> : <NotificationOff />}
+    // </Link>
   );
 };
 

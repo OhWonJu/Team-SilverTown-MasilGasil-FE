@@ -6,33 +6,34 @@ import { UseFormRegister } from "react-hook-form";
 import { Input, Textarea, Button } from "@/components";
 import { TopNavigator } from "@/components/navigators/TopNavigator";
 import { GoBackButton } from "@/components/navigators/TopNavigator/components";
-
+import Image from "@/components/icons/Image";
 import { useUI } from "@/components/uiContext/UiContext";
-import { GeoPosition, MateGatheringPlace } from "@/types/OriginDataType";
-
+import { MateGatheringPlace } from "@/types/OriginDataType";
+import Theme from "@/styles/theme";
 import useTheme from "@/lib/hooks/useTheme";
 import * as GS from "@/styles/GlobalStyle";
 
 import * as S from "./MateCreate.styles";
+import { MateCreateProps } from "./MateCreate.controller";
 import { regularFields } from "./MateCreate.constants";
 
 import { CalendarDatePicker, OptionTimePicker } from "./components";
 import { DefaultTheme } from "styled-components";
-import { MateCreateRequest } from "@/types/Request";
+import InputUpload from "@/components/InputUpload/InputUpload";
 
 interface MateCreateViewProps {
-  register: UseFormRegister<MateCreateRequest>;
+  register: UseFormRegister<MateCreateProps>;
   handleSubmit: () => void;
   isFormFilled: boolean;
-  handleCapacityChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+  updateThumbnail: (file: File | null) => void;
+  handlePersonnelChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
   startDate: Date | null;
   setStartDate: Dispatch<SetStateAction<Date | null>>;
   startTime: Date | null;
   setStartTime: Dispatch<SetStateAction<Date | null>>;
-  capacity: string;
-  gatheringPlaceDetail: string;
-  handleGatheringPlaceSubmit: (location: MateGatheringPlace) => void;
-  postStartPoint: GeoPosition;
+  selectedPersonnel: string;
+  locationDetail: string;
+  onLocationSubmit: (location: MateGatheringPlace) => void;
 }
 
 interface MateCreateButtonProps {
@@ -58,16 +59,15 @@ const MateCreateView = ({
   register,
   handleSubmit,
   isFormFilled,
-
-  handleCapacityChange,
+  updateThumbnail,
+  handlePersonnelChange,
   startDate,
   setStartDate,
   startTime,
   setStartTime,
-  capacity,
-  gatheringPlaceDetail,
-  handleGatheringPlaceSubmit,
-  postStartPoint,
+  selectedPersonnel,
+  locationDetail,
+  onLocationSubmit,
 }: MateCreateViewProps) => {
   const theme = useTheme();
 
@@ -76,9 +76,9 @@ const MateCreateView = ({
   const handleOpenLocationModal = () => {
     setModalView("MATE_CREATE_MAP_VIEW");
     openModal({
-      baseLocation: postStartPoint,
-      locationDetail: gatheringPlaceDetail,
-      onSubmit: handleGatheringPlaceSubmit,
+      baseLocation: { lat: 37.497, lng: 127.0254 },
+      locationDetail: locationDetail,
+      onSubmit: onLocationSubmit,
     });
   };
 
@@ -103,7 +103,17 @@ const MateCreateView = ({
                 }}
               />
             )}
-
+            {field.name === "thumbnail" && (
+              <InputUpload updateFile={updateThumbnail}>
+                <S.PinEditThumbnail>
+                  <Image
+                    width={40}
+                    fill={Theme.lightTheme.gray_300}
+                  />
+                  클릭하여 썸네일 업로드
+                </S.PinEditThumbnail>
+              </InputUpload>
+            )}
             {field.name === "content" && (
               <Textarea
                 placeholder={field.placeholder}
@@ -113,54 +123,52 @@ const MateCreateView = ({
                 }}
               />
             )}
-            {field.name === "gatheringPlaceDetail" && (
+            {field.name === "location" && (
               <S.OpenModal
                 onClick={handleOpenLocationModal}
-                $isSelected={!!gatheringPlaceDetail}
+                $isSelected={!!locationDetail}
               >
-                {gatheringPlaceDetail || field.placeholder}
+                {locationDetail || field.placeholder}
               </S.OpenModal>
             )}
             {field.name === "date" && (
-              <S.DatePickerWrapper>
-                <CalendarDatePicker
-                  startDate={startDate}
-                  setStartDate={setStartDate}
-                />
-              </S.DatePickerWrapper>
+              <CalendarDatePicker
+                startDate={startDate}
+                setStartDate={setStartDate}
+              />
             )}
           </S.Section>
         ))}
 
-        <S.Section>
-          <S.Title>희망 시간</S.Title>
-          <S.DatePickerWrapper>
+        <S.FlexContainer>
+          <S.Section>
+            <S.Title>희망 시간</S.Title>
             <OptionTimePicker
               startTime={startTime}
               setStartTime={setStartTime}
             />
-          </S.DatePickerWrapper>
-        </S.Section>
+          </S.Section>
 
-        <S.Section>
-          <S.Title>모집 인원</S.Title>
-          <S.PersonnelSelect
-            value={capacity}
-            onChange={handleCapacityChange}
-            $isSelected={capacity !== ""}
-          >
-            <option value="">인원을 선택해주세요.</option>
-            <option value="0">상관 없음</option>
-            {Array.from({ length: 10 }, (_, i) => (
-              <option
-                key={i + 1}
-                value={i + 1}
-              >
-                {i + 1}명
-              </option>
-            ))}
-          </S.PersonnelSelect>
-        </S.Section>
+          <S.Section>
+            <S.Title>모집 인원</S.Title>
+            <S.PersonnelSelect
+              value={selectedPersonnel}
+              onChange={handlePersonnelChange}
+              $isSelected={selectedPersonnel !== ""}
+            >
+              <option value="">인원을 선택해주세요.</option>
+              <option value="0">상관 없음</option>
+              {Array.from({ length: 10 }, (_, i) => (
+                <option
+                  key={i + 1}
+                  value={i + 1}
+                >
+                  {i + 1}명
+                </option>
+              ))}
+            </S.PersonnelSelect>
+          </S.Section>
+        </S.FlexContainer>
 
         <MateCreateButton
           onClickHandler={handleSubmit}

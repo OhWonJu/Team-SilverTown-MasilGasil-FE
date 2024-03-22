@@ -30,8 +30,8 @@ const StepLayout = ({
 }: StepLayoutProps) => {
   return (
     <AnimatePresence
-      mode="popLayout"
-      initial={false}
+      mode="popLayout" // Layout 의 애니메이션이 상위 요소에 영향을 주지 않도록 합니다.
+      initial={false} // 초기 view 를 보알 때 애니메이션을 진행하지 않습니다.
     >
       <motion.div
         key={focusedStep ? focusedStep : -1}

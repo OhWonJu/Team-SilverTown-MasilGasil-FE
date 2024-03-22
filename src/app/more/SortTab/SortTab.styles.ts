@@ -12,6 +12,9 @@ export const MoreListSort = styled.nav`
     color: ${(props) => props.theme.gray_500};
 
     cursor: pointer;
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   button:first-child {

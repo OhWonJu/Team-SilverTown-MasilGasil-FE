@@ -7,8 +7,8 @@ import { TAB_CONTENTS } from "./Log.constants";
 import useTheme from "@/lib/hooks/useTheme";
 
 import { GeoPosition } from "@/types/OriginDataType";
-import { MasilDetailResponse } from "@/types/Response";
-import { TabType, UserInfoType } from "./Log.types";
+import { MasilDetailResponse, UserInfoType } from "@/types/Response";
+import { TabType } from "./Log.types";
 
 import { Button, Tab } from "@/components";
 import { TopNavigator } from "@/components/navigators/TopNavigator";
@@ -71,7 +71,9 @@ const LogView = ({
 
           <S.LogContentSection
             className="scrollbar-hide"
-            style={{ overflowY: tabIndex === TabType.Pin ? "auto" : "hidden" }}
+            style={{
+              overflowY: tabIndex === TabType.Pin ? "visible" : "auto",
+            }}
           >
             {tabIndex === TabType.Memo && (
               <LogMemo
@@ -86,25 +88,25 @@ const LogView = ({
                 handlePinIndex={handleCurrentPinIndex}
               />
             )}
-          </S.LogContentSection>
 
-          <Link href={`/post/create?logId=${logId}`}>
-            <Button
-              width="calc(100% - 4rem)"
-              textColor={theme?.white}
-              buttonColor={theme?.green_500}
-              style={{
-                position: "absolute",
-                left: "50%",
-                bottom: "10rem",
-                transform: "translateX(-50%)",
-                fontSize: `${FONT_SIZE.LARGE}`,
-                fontWeight: `${FONT_WEIGHT.BOLD}`,
-              }}
-            >
-              산책 공유하기
-            </Button>
-          </Link>
+            <Link href={`/post/create?logId=${logId}`}>
+              <Button
+                width="calc(100% - 4rem)"
+                textColor={theme?.white}
+                buttonColor={theme?.green_500}
+                style={{
+                  position: "fixed",
+                  left: "50%",
+                  bottom: "9rem",
+                  transform: "translateX(-50%)",
+                  fontSize: `${FONT_SIZE.LARGE}`,
+                  fontWeight: `${FONT_WEIGHT.BOLD}`,
+                }}
+              >
+                산책 공유하기
+              </Button>
+            </Link>
+          </S.LogContentSection>
         </S.LogContentLayout>
       </S.LogContainer>
     </>

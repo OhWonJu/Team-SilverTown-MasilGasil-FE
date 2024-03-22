@@ -34,6 +34,7 @@ export interface CheckNickNameResponse {
   nickname: string;
 }
 
+// export interface SignUpResponse {}
 export interface EditUserResponse {
   nickname: string;
   sex: "MALE" | "FEMALE";
@@ -41,4 +42,12 @@ export interface EditUserResponse {
   height: number;
   weight: number;
   exerciseIntensity: IntensityOption;
+}
+
+export interface UserInfoType {
+  sex?: "MALE" | "FEMALE";
+  birthDate?: string;
+  height?: number;
+  weight?: number;
+  exerciseIntensity?: IntensityOption;
 }

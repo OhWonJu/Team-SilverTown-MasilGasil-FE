@@ -6,7 +6,7 @@ import { ListCard } from "@/components";
 
 import { PostListItem } from "@/types/OriginDataType/Post";
 import { useRouter } from "next/navigation";
-import parseLocationObject from "@/utils/parseLocation";
+import parseLocationObject from "@/lib/utils/parseLocation";
 import { List as VList, AutoSizer, InfiniteLoader } from "react-virtualized";
 import { PostCardsSkeleton } from "@/components/skeletons";
 
@@ -106,7 +106,7 @@ const MoreListView = ({
                       width={width}
                       height={height}
                       rowCount={listData.length}
-                      rowHeight={250 + 20}
+                      rowHeight={250 + 20} // card height + padding vertical 20
                       rowRenderer={rowRenderer}
                       className="scrollbar-hide"
                       style={{ paddingBottom: "2rem" }}

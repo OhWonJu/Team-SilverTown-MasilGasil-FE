@@ -22,7 +22,7 @@ import {
   LOG_RECORD_REDUCER_ACTIONS,
 } from "../LogRecord.constants";
 import logRecordReducer from "./reducer/LogRecordReducer";
-import useUserLocationStore from "@/stores/useUserLocationStore";
+import useUserLocationStore from "@/lib/stores/useUserLocationStore";
 import { useUI } from "@/components/uiContext/UiContext";
 import { throttle } from "lodash";
 
@@ -175,6 +175,7 @@ export const LogRecordContextProvider = ({
       dispatch({
         type: LOG_RECORD_REDUCER_ACTIONS.UPDATE_ADDRESS,
         payload: {
+          // location: { lat: latitude, lng: longitude },
           region: result[0],
         },
       });

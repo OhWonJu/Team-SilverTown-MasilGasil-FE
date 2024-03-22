@@ -3,7 +3,7 @@ import { Map } from "react-kakao-maps-sdk";
 import throttle from "lodash.throttle";
 import debounce from "lodash.debounce";
 
-import useUserLocationStore from "@/stores/useUserLocationStore";
+import useUserLocationStore from "@/lib/stores/useUserLocationStore";
 import { GeoPosition } from "@/types/OriginDataType";
 import { useUI } from "@/components/uiContext/UiContext";
 import { LOG_RECORD_MESSAGE } from "@/app/log/record/LogRecord.constants";
@@ -72,6 +72,7 @@ const MapSection = ({ setLocationData }: MapSectionProps) => {
       enableHighAccuracy: true,
     });
 
+    // 사용자 위치로 center 초기화
     navigator.geolocation.getCurrentPosition(updateMapCenter, handleWatchError, {
       enableHighAccuracy: true,
     });

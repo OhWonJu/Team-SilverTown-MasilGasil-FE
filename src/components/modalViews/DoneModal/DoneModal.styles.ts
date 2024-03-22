@@ -20,5 +20,4 @@ export const DoneTitle = styled.h6`
 
   font-size: ${FONT_SIZE.H5};
   font-weight: ${FONT_WEIGHT.BOLD};
-  text-align: center;
 `;

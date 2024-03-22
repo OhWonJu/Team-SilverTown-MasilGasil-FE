@@ -2,12 +2,11 @@
 
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { convertMeter, convertSeconds, convertDateToYearMonthDay } from "@/utils";
+import { convertMeter, convertSeconds, convertDateToYearMonthDay } from "@/lib/utils";
 import { LogDetailCard, LogSimpleCard } from "@/components";
 import { ProfileResponse, RecentMasil } from "@/types/Response";
 import * as S from "./MyRecordList.styles";
 import { PostListItem } from "@/types/OriginDataType/Post";
-import { toast } from "@/components/ShadcnUi/ui/useToast";
 
 interface MyRecordListProps {
   title: string;
@@ -25,14 +24,13 @@ const MyRecordList = ({ title, urlLink, recordList, type }: MyRecordListProps) =
     <S.BorderContainer>
       <S.BorderTitleSection>
         <h3>{title}</h3>
-
-        <span
-          onClick={() => {
-            toast({ title: "준비 중인 기능이에요!", duration: 2000 });
-          }}
+        <Link
+          href={urlLink}
+          title={title}
+          scroll={false}
         >
           더보기
-        </span>
+        </Link>
       </S.BorderTitleSection>
       <S.BorderContentSection>
         <S.BorderContentListWrapper>

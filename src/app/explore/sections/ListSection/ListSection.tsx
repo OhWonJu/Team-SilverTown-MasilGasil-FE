@@ -5,7 +5,7 @@ import { List as VList, AutoSizer, InfiniteLoader } from "react-virtualized";
 
 import { ListCard } from "@/components";
 import { PostListItem } from "@/types/OriginDataType/Post";
-import parseLocationObject from "@/utils/parseLocation";
+import parseLocationObject from "@/lib/utils/parseLocation";
 import { useRouter } from "next/navigation";
 import { PostCardsSkeleton } from "@/components/skeletons";
 
@@ -124,7 +124,7 @@ const ListSection = memo(function List({
                       width={width}
                       height={height}
                       rowCount={data.length}
-                      rowHeight={250 + 20}
+                      rowHeight={250 + 20} // card height + padding vertical 20
                       rowRenderer={rowRenderer}
                       className="scrollbar-hide"
                       style={{ paddingBottom: "2rem" }}

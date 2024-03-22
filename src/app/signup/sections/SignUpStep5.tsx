@@ -11,7 +11,7 @@ import { SignUpFormProps } from "../SignUp.controller";
 import useSignUpModel from "../SignUp.model";
 import * as GS from "@/styles/GlobalStyle";
 import * as S from "../SignUp.styles";
-import { WINDOW_VIEWS } from "@/stores/ui/types/windowType";
+import { WINDOW_VIEWS } from "@/lib/stores/ui/types/windowType";
 import { useUI } from "@/components/uiContext/UiContext";
 
 interface SignUpStep5Props {
@@ -21,6 +21,7 @@ interface SignUpStep5Props {
 
 const POLICY_CONTENT_LIST: Array<{
   content: string;
+  // policyView: WINDOW_VIEWS;
   required: boolean;
   formKey: "isPersonalInfoConsented" | "isLocationInfoConsented" | "isUnderAgeConsentConfirmed";
   policyView: WINDOW_VIEWS;
@@ -137,6 +138,7 @@ const SignUpStep5 = ({ getValues, setValue }: SignUpStep5Props) => {
           {POLICY_CONTENT_LIST.map((policy, index) => (
             <li key={index}>
               <GS.Row className="space-x-4 text-sm">
+                {/* Accept Polciy */}
                 <button onClick={() => togglePolicyAccept(index)}>
                   <GS.Row className="space-x-4">
                     <Check
@@ -147,7 +149,7 @@ const SignUpStep5 = ({ getValues, setValue }: SignUpStep5Props) => {
                     <S.PolicyText>{policy.content}</S.PolicyText>
                   </GS.Row>
                 </button>
-
+                {/* Show Policy */}
                 <button
                   onClick={() => {
                     handleShowPolicy(policy.policyView, policy.url);

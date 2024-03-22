@@ -40,6 +40,11 @@ const MateDetail = ({ postId, mateData }: MateDetailProps) => {
 
           <Divider />
 
+          {/* <MateEvaluation
+            authorEvaluation={authorEvaluation}
+            nickName={authorNickname}
+          /> */}
+
           <MateMembers
             mateData={mateData}
             acceptedUserList={acceptedUserList}

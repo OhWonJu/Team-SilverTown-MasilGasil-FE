@@ -11,7 +11,8 @@ import { useMutation } from "@tanstack/react-query";
 import { changeProfileImage, getMe } from "@/lib/api/User/client";
 import { USER_KEY } from "@/lib/api/queryKeys";
 import { useToast } from "@/components/ShadcnUi/ui/useToast";
-import useMeStore from "@/stores/useMeStore";
+import useMeStore from "@/lib/stores/useMeStore";
+import { useUI } from "@/components/uiContext/UiContext";
 
 interface UserInfoProfileProps {
   profileImage: string | null;
@@ -31,6 +32,7 @@ const UserInfoProfile = ({
   const [profile, setProfile] = useState(profileImage);
   const { toast } = useToast();
   const { setMe } = useMeStore();
+  const { setModalView, openModal, closeModal } = useUI();
 
   const uploadImageMutation = useMutation({
     mutationKey: [USER_KEY.UPLOAD_IMAGE],

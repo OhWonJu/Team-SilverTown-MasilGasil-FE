@@ -22,6 +22,7 @@ export const BorderTitleSection = styled.div`
     font-size: 1.4rem;
     font-weight: ${FONT_WEIGHT.MEDIUM};
     color: ${(props) => props.theme.gray_500};
+    cursor: pointer;
   }
 `;
 export const BorderContentSection = styled.div`
@@ -37,7 +38,7 @@ export const BorderContentListWrapper = styled.ul`
   scrollbar-width: none; /* Firefox */
 
   &::-webkit-scrollbar {
-    display: none;
+    display: none; /* Chrome, Safari, Opera */
   }
   & > li:not(:last-child) {
     margin-right: 1.5rem;

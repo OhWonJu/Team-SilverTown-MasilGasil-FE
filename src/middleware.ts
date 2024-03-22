@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getToken, encode, decode } from "next-auth/jwt";
-import { pathAbleCheck } from "./utils/pathAbleCheck";
+import { pathAbleCheck } from "./lib/utils/pathAbleCheck";
 import { refreshToken } from "./lib/api/User/server";
 import { parseJwt } from "./app/api/auth/[...nextauth]/options";
 import { RequestCookies, ResponseCookies } from "next/dist/compiled/@edge-runtime/cookies";
@@ -83,6 +83,7 @@ function applySetCookie(req: NextRequest, res: NextResponse): void {
 export async function middleware(request: NextRequest) {
   const currentPath = request.nextUrl.pathname;
 
+  // 미들웨어 인터셉트가 필요없는 경우 bypass
   const isBypassPaths = pathAbleCheck(bypassPaths, currentPath);
   if (isBypassPaths) return;
 
@@ -141,6 +142,7 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(url);
   }
 
+  // 인증된 유저인 경우, 인증 유저는 접근할 수 없는 경로에 대한 블로킹 (유저인증 관련 등F)
   const publicPathsAccessInable = pathAbleCheck(publicPaths, currentPath);
   if (token && token.nickname && publicPathsAccessInable) {
     const url = request.nextUrl.clone();

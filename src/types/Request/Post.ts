@@ -18,9 +18,10 @@ export interface PostCreateRequest {
 }
 
 export interface PostListRequest {
-  depth1: string;
-  depth2: string;
-  depth3: string;
+  authorId?: number;
+  depth1?: string;
+  depth2?: string;
+  depth3?: string;
   order: "LATEST" | "MOST_POPULAR";
   cursor?: string;
   size?: number;
