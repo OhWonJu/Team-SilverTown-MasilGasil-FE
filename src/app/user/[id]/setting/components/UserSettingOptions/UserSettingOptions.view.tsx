@@ -3,17 +3,12 @@
 import * as GS from "../../UserSetting.styles";
 
 import { PersonOff, PersonSearch } from "@/components/icons";
-import { MeResponse } from "@/types/Response";
 
 import { SettingContent } from "..";
 import useUserSettingOptionsController from "./UserSettingOptions.controller";
 
-interface UserSettingOptionsViewProps {
-  meData: MeResponse;
-}
-
-const UserSettingOptionsView = ({ meData }: UserSettingOptionsViewProps) => {
-  const { currentPublic, handleClickButton } = useUserSettingOptionsController({ meData });
+const UserSettingOptionsView = () => {
+  const { isPublic, handleTogglePublic } = useUserSettingOptionsController();
 
   return (
     <GS.UserSettingInnerLayout>
@@ -22,11 +17,11 @@ const UserSettingOptionsView = ({ meData }: UserSettingOptionsViewProps) => {
       {/* TODO - 상태에따라 아이콘 변경 예정 */}
 
       <SettingContent
-        icon={currentPublic ? <PersonSearch /> : <PersonOff />}
+        icon={isPublic ? <PersonSearch /> : <PersonOff />}
         text={"계정 공개여부"}
-        onClick={handleClickButton}
+        onClick={handleTogglePublic}
         isSwitch={true}
-        isCheckedSwitch={currentPublic}
+        isCheckedSwitch={isPublic}
         switchType="ACCOUNT"
       />
 
